@@ -5,10 +5,7 @@ target
 tmp
 .history
 dist
-/.idea
-/*.iml
 /out
-/.idea_modules
 /.classpath
 /.project
 /RUNNING_PID
@@ -16,5 +13,4 @@ dist
 activator
 activator.bat
 activator-launch-1.2.3.jar
-debug.bat
 
