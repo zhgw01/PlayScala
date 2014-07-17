@@ -11,3 +11,6 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 # HelloWorld Practice
 GET     /hello                      controllers.com.learn.controller.HelloWorld.index(n: String)
+
+# Play for Scala
+GET     /products                   controllers.Products.list
