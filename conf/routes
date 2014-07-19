@@ -16,3 +16,4 @@ GET     /hello                      controllers.com.learn.controller.HelloWorld.
 GET     /products                   controllers.Products.list
 GET     /products/:ean              controllers.Products.show(ean: Long)
 GET     /barcode/:ean               controllers.BarCodes.barcode(ean: Long)
+GET     /products/new               controllers.Products.newProduct

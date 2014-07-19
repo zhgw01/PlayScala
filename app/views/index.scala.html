@@ -1,6 +1,6 @@
-@(message: String)
+@(message: String)(implicit flash: Flash, lang: Lang)
 
-@main("Welcome to Play") {
+@main("Welcome to Play"){
 
     @play20.welcome(message)
 
