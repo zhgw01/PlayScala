@@ -14,3 +14,5 @@ libraryDependencies ++= Seq(
 )
 
 libraryDependencies += "org.scalatest" % "scalatest_2.11" % "2.2.0" % "test"
+
+libraryDependencies += "net.sf.barcode4j" % "barcode4j" % "2.0"

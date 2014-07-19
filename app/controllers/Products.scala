@@ -15,4 +15,10 @@ object Products extends Controller{
       val products = Product.findAll
       Ok(views.html.products.list(products))
   }
+
+  def show(ean: Long) = Action { implicit request =>
+      Product.findByEAN(ean).map { product =>
+        Ok(views.html.products.details(product))
+      }.getOrElse(NotFound)
+  }
 }

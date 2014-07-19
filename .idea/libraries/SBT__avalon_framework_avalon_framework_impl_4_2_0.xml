@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="SBT: avalon-framework:avalon-framework-impl:4.2.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/avalon-framework/avalon-framework-impl/jars/avalon-framework-impl-4.2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
