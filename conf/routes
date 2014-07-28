@@ -8,9 +8,8 @@ GET     /                           controllers.Application.index
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
-
-# HelloWorld Practice
-GET     /hello                      controllers.com.learn.controller.HelloWorld.index(n: String)
-
 # Play for Scala
-GET     /products                   controllers.Products.list
+GET     /products                   controllers.http.Products.list(page: Int ?= 1)
+GET     /product/:ean               controllers.http.Products.details(ean: Long)
+PUT     /product/:ean               controllers.http.Products.update(ean: Long)
+GET     /product/:ean/edit          controllers.http.Products.edit(ean: Long)
