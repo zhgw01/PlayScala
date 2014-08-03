@@ -4,6 +4,8 @@ package controllers
  * Created by galway on 7/30/14.
  */
 
+//http://danielwestheide.com/blog/2013/01/16/the-neophytes-guide-to-scala-part-9-promises-and-futures-in-practice.html
+
 import play.api.libs.json.Json
 import play.api.libs.ws._
 import play.api.Play.current
