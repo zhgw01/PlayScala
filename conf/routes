@@ -20,3 +20,6 @@ GET     /barcode/:ean               controllers.BarCodes.barcode(ean: Long)
 # async
 GET     /async/linkedIn             controllers.Proxy.linkedIn
 GET     /async/time                 controllers.Proxy.latency
+
+# zip
+GET     /zip                        controllers.ZipController.zip
