@@ -23,3 +23,5 @@ GET     /async/time                 controllers.Proxy.latency
 
 # zip
 GET     /zip                        controllers.ZipController.zip
+GET     /status                     controllers.service.WebSocketController.statusPage()
+GET     /statusFeed                 controllers.service.WebSocketController.statusFeed()
