@@ -13,3 +13,10 @@ GET     /products                   controllers.http.Products.list(page: Int ?= 
 GET     /product/:ean               controllers.http.Products.details(ean: Long)
 PUT     /product/:ean               controllers.http.Products.update(ean: Long)
 GET     /product/:ean/edit          controllers.http.Products.edit(ean: Long)
+
+# Hello
+GET     /hello                      controllers.Application.greet(name: String)
+
+# WebSocket
+GET     /room/:nick                 controllers.Chat.showRoom(nick)
+GET     /room/socket/:nick          controllers.Chat.chatSocket(nick)
