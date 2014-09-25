@@ -21,7 +21,7 @@ object Chat extends Controller{
       Ok(views.html.chat.ShowRoom(nick))
   }
 
-  def chatSocket(nick: String) = WebSocket.async{
+  def chatSocket(nick: String) = WebSocket.tryAccept{
     request =>
     val channelsFuture = room ? Join(nick)
     channelsFuture.mapTo[(Iteratee[String, _], Enumerator[String])]
