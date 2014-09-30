@@ -21,10 +21,11 @@ object Chat extends Controller{
       Ok(views.html.chat.ShowRoom(nick))
   }
 
-  def chatSocket(nick: String) = WebSocket.tryAccept{
-    request =>
-    val channelsFuture = room ? Join(nick)
-    channelsFuture.mapTo[(Iteratee[String, _], Enumerator[String])]
+  def chatSocket(nick: String) = WebSocket.tryAccept[String]{
+    implicit request =>
+      val channelsFuture = room ? Join(nick)
+
+    channelsFuture.mapTo[Either[play.api.mvc.Result, (Iteratee[String, _], Enumerator[String])]]
   }
 
   case class Join(nick: String)
@@ -37,7 +38,7 @@ object Chat extends Controller{
     val (enumerator, channel) = Concurrent.broadcast[String]
 
     override def receive = {
-      case Join(nick) => {
+      case Join(nick) =>
         if (!users.contains(nick)) {
           val iteratee = Iteratee.foreach[String] {
             message => self ! Broadcast(s"$nick: $message")
@@ -47,19 +48,17 @@ object Chat extends Controller{
 
           users += nick
           channel.push(s"User $nick join the room, now ${users.size} users")
-          sender ! (iteratee, enumerator)
+          sender ! Right(iteratee, enumerator)
         } else {
 
           val enumerator = Enumerator(s"Nickname $nick is already in use")
           val iteratee = Iteratee.ignore
-          sender ! (iteratee, enumerator)
+          sender ! Right(iteratee, enumerator)
         }
-      }
 
-      case Leave(nick) => {
+      case Leave(nick) =>
         users -= nick
         channel.push(s"User $nick has left the room, ${users.size} users left")
-      }
 
       case Broadcast(msg: String) => channel.push(msg)
     }
