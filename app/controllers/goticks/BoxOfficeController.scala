@@ -8,9 +8,14 @@ import play.api.data.Forms._
 import play.api.data.format.Formats._
 import play.api.libs.concurrent.Akka
 import play.api.mvc.{Action, Controller}
+import akka.util.Timeout
+import scala.concurrent.duration._
+import scala.concurrent.ExecutionContext.Implicits.global
+
 
 object BoxOfficeController extends Controller{
   import akka.goticks.TicketSeller._
+  implicit val timeout = Timeout(5 seconds)
 
   val boxOfficeActor = Akka.system.actorOf(Props[BoxOffice], "BoxOffice")
 
@@ -20,8 +25,13 @@ object BoxOfficeController extends Controller{
   )(Event.apply)(Event.unapply))
 
 
-  def events = Action {
-    Ok("Get Events")
+  def events = Action.async {
+    import akka.pattern.ask
+    val futureEvents = (boxOfficeActor ? GetEvents).mapTo[Events]
+    futureEvents.map {
+      eventList =>
+        Ok(views.html.goticks.events(eventList.events))
+    }
   }
 
   def createEvent() = Action { implicit request =>
