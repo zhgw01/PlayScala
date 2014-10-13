@@ -10,7 +10,9 @@ libraryDependencies ++= Seq(
   jdbc,
   anorm,
   cache,
-  ws
+  ws,
+  "org.scalatest" %% "scalatest" % "2.2.0" % "test",
+  "com.typesafe.akka" %% "akka-testkit" % "2.3.3" % "test"
 )
 
 libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.0" % "test"

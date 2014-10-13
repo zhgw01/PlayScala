@@ -20,3 +20,8 @@ GET     /hello                      controllers.Application.greet(name: String)
 # WebSocket
 GET     /room/:nick                 controllers.Chat.showRoom(nick)
 GET     /room/socket/:nick          controllers.Chat.chatSocket(nick)
+
+# Akka in Action
+GET     /goticks/events                 controllers.goticks.BoxOfficeController.events
+PUT     /goticks/events                 controllers.goticks.BoxOfficeController.createEvent()
+GET     /goticks/ticket/:eventNumber    controllers.goticks.BoxOfficeController.buyTicket(eventNumber: Long)
