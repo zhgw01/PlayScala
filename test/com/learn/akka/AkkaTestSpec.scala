@@ -1,7 +1,7 @@
 package com.learn.akka
 
 import akka.actor.ActorSystem
-import akka.testkit.TestKit
+import akka.testkit.{ImplicitSender, TestKit}
 import org.scalatest._
 
 trait StopSystemAfterAll extends BeforeAndAfterAll {
@@ -17,6 +17,7 @@ trait StopSystemAfterAll extends BeforeAndAfterAll {
 abstract class AkkaTestSpec extends TestKit(ActorSystem("testSystem"))
                             with FlatSpecLike
                             with ShouldMatchers
+                            with ImplicitSender
                             with StopSystemAfterAll
                             with OptionValues
                             with Inside

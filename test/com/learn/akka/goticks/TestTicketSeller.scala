@@ -1,6 +1,6 @@
 package com.learn.akka.goticks
 
-import akka.actor.Props
+import akka.actor.{ActorRef, Actor, Props}
 import akka.goticks.TicketSeller
 import akka.goticks.TicketSeller._
 import akka.testkit.TestActorRef
@@ -12,14 +12,43 @@ class TicketSellerActor extends TicketSeller
   def getTickets = tickets
 }
 
+class Kiosk(nextKiosk: ActorRef) extends Actor {
+  override def receive = {
+    case ticket @ Ticket(_, number) =>
+      nextKiosk ! ticket
+  }
+}
+
 class TestTicketSeller extends AkkaTestSpec{
 
-  "TicketSeller" should "change its internal state when it receive a Ticket Message" in {
+  //single-thread version
+  "TicketSeller" should "change its internal state when it receives a Ticket Message" in {
     val seller = TestActorRef[TicketSellerActor](Props[TicketSellerActor], "seller")
     val tickets = Ticket("NBA", 10) :: Nil
     seller ! Tickets(tickets)
 
     seller.underlyingActor.getTickets should equal(tickets)
+  }
+
+  //multi-thread version
+  it should "return the correct ticket number when receives a GetTicketNumber Message" in {
+    val seller = TestActorRef[TicketSeller]
+    val tickets = Ticket("NBA", 10) :: Nil
+    seller ! Tickets(tickets)
+
+    seller ! GetTicketNumber
+    expectMsg(1)
+  }
+
+  //sending actor
+  "Kiosk" should "foward the Ticket message to next one" in {
+    val kiosk = system.actorOf(Props(new Kiosk(testActor)))
+
+    kiosk ! Ticket("NBA", 100)
+
+    expectMsgPF() {
+      case ticket @ Ticket(_, number) => number shouldBe 100
+    }
   }
 
 }
