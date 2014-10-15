@@ -1,13 +1,14 @@
-package akka.goticks
+package akka.goticks.tdd
 
-import akka.actor.{ActorRef, Props, ActorLogging, Actor}
+import akka.actor.{Actor, ActorLogging, ActorRef, Props}
 import akka.util.Timeout
+
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 import scala.concurrent.duration._
-import scala.concurrent.ExecutionContext.Implicits.global
 
 class BoxOffice extends Actor with ActorLogging{
-  import TicketSeller._
+  import akka.goticks.tdd.TicketSeller._
   implicit val timeout = Timeout(5 seconds)
 
   def createTicketSeller(name: String) = context.actorOf(Props[TicketSeller], name)

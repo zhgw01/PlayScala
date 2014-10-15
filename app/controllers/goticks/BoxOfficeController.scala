@@ -1,7 +1,7 @@
 package controllers.goticks
 
 import akka.actor.Props
-import akka.goticks.BoxOffice
+import akka.goticks.tdd.{TicketSeller, BoxOffice}
 import play.api.Play.current
 import play.api.data.Form
 import play.api.data.Forms._
@@ -14,7 +14,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 
 
 object BoxOfficeController extends Controller{
-  import akka.goticks.TicketSeller._
+  import TicketSeller._
   implicit val timeout = Timeout(5 seconds)
 
   val boxOfficeActor = Akka.system.actorOf(Props[BoxOffice], "BoxOffice")

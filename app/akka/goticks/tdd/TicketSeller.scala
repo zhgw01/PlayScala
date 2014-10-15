@@ -1,7 +1,6 @@
-package akka.goticks
+package akka.goticks.tdd
 
-import akka.actor.{PoisonPill, Actor}
-import scala.concurrent.ExecutionContext.Implicits.global
+import akka.actor.{Actor, PoisonPill}
 
 object TicketSeller {
   case object GetEvents
@@ -18,7 +17,7 @@ object TicketSeller {
 }
 
 class TicketSeller extends Actor{
-  import TicketSeller._
+  import akka.goticks.tdd.TicketSeller._
 
   var tickets = Vector[Ticket]()
 
