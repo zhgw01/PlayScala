@@ -1,9 +1,8 @@
-package com.learn.akka.goticks
+package com.learn.akka.goticks.tdd
 
-import akka.actor.{ActorRef, Actor, Props}
+import akka.actor.{Actor, ActorRef, Props}
 import akka.goticks.tdd.TicketSeller
-import TicketSeller._
-import akka.goticks.tdd.TicketSeller
+import akka.goticks.tdd.TicketSeller._
 import akka.testkit.TestActorRef
 import com.learn.akka.AkkaTestSpec
 
