@@ -27,5 +27,13 @@ object Product {
   def findAll = products.toList.sortBy(_.ean)
 
   def findByEAN(ean: Long) = products.find(_.ean == ean)
+
+  def save(product: Product) = {
+    findByEAN(product.ean).map { oldProduct =>
+      products = products - oldProduct + product
+    }.getOrElse {
+      throw new IllegalArgumentException("Product not found")
+    }
+  }
 }
 
