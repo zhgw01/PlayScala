@@ -15,3 +15,13 @@ activator
 activator.bat
 activator-launch-1.2.3.jar
 
+.idea/dictionaries/
+.idea/libraries/SBT__com_google_protobuf_protobuf_java_2_5_0.xml
+.idea/libraries/SBT__com_typesafe_akka_akka_multi_node_testkit_2_11_2_3_3.xml
+.idea/libraries/SBT__com_typesafe_akka_akka_remote_2_11_2_3_3.xml
+.idea/libraries/SBT__com_typesafe_akka_akka_testkit_2_11_2_3_3.xml
+.idea/libraries/SBT__org_uncommons_maths_uncommons_maths_1_2_2a.xml
+activator-sbt-echo-akka-shim.sbt
+project/activator-sbt-echo-shim.sbt
+project/activator-sbt-eclipse-shim.sbt
+project/activator-sbt-idea-shim.sbt

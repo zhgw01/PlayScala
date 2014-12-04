@@ -14,3 +14,6 @@ GET     /hello                      controllers.com.learn.controller.HelloWorld.
 
 # Play for Scala
 GET     /products                   controllers.Products.list
+
+# Session Practice
+GET     /session                    controllers.com.learn.controller.Session.index
