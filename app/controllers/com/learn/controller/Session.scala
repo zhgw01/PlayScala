@@ -14,14 +14,22 @@ object Session extends Controller{
   val log = Logger(this.getClass())
 
   def index = Action { implicit  request =>
-    //val url = controllers.routes.Assets.at("/htmls/session.html").url
-    //TemporaryRedirect(url)
 
     request.session.get("jsFile").map {
       filename =>
         val jsContent = Source.fromFile(filename).mkString
         log.info(s"Set Javascript: $jsContent")
-        Ok(views.html.sessions.session(jsContent))
+
+        //ToDo: read it from database
+        val operand_x = request.session.get("operand_x").getOrElse("0")
+        val operand_y = request.session.get("operand_y").getOrElse("0")
+        val operator = request.session.get("operator").getOrElse("+")
+
+        Ok(views.html.sessions.session(jsContent)).withHeaders(
+          "operand_x" -> s"$operand_x",
+          "operand_y" -> s"$operand_y",
+          "operator" -> s"$operator"
+        )
     }.getOrElse {
       val operand_x = Random.nextInt(100)
       val operand_y = Random.nextInt(100)
