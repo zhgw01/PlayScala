@@ -17,3 +17,7 @@ GET     /products                   controllers.Products.list
 
 # Session Practice
 GET     /session                    controllers.com.learn.controller.Session.index
+POST    /upload                     controllers.com.learn.controller.Session.upload
+
+# Map static html
+GET     /statichtml             controllers.Assets.at(path="/public", file="/htmls/session.html")

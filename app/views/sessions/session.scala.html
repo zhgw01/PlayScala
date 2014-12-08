@@ -1,0 +1,27 @@
+@(jsContent: String)(implicit lang:Lang)
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Session Mange</title>
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+<h1>Hello Session Scala</h1>
+
+<h2 id="result"></h2>
+
+@helper.form(action = controllers.com.learn.controller.routes.Session.upload, 'enctype -> "multipart/form-data") {
+    <input type="file" name="jsFile">
+    <p><input type="submit"></p>
+}
+
+
+@if(!jsContent.isEmpty) {
+    <script>
+        @Html(jsContent)
+    </script>
+}
+
+</body>
+</html>
