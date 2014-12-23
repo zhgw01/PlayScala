@@ -19,5 +19,11 @@ GET     /products                   controllers.Products.list
 GET     /session                    controllers.com.learn.controller.Session.index
 POST    /upload                     controllers.com.learn.controller.Session.upload
 
+# OAuth
+GET     /oauthcallback              controllers.com.learn.controller.OAuthCallback.callback(code: Option[String], state: Option[String])
+GET     /oauthgrant                 controllers.com.learn.controller.OAuthCallback.grant
+GET     /oauthsuccess               controllers.com.learn.controller.OAuthCallback.success
+GET     /oauthindex                 controllers.com.learn.controller.OAuthCallback.index
+
 # Map static html
 GET     /statichtml             controllers.Assets.at(path="/public", file="/htmls/session.html")
